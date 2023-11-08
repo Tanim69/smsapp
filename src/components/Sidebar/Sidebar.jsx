@@ -4,7 +4,7 @@ import { AiOutlineHome, AiOutlineMessage, AiOutlineSetting } from 'react-icons/a
 import { IoIosNotificationsOutline } from 'react-icons/io'
 import { IoLogOut } from 'react-icons/io5'
 
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, updateProfile } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 import { BsFillCloudUploadFill } from 'react-icons/bs'
 import { useState } from 'react'
@@ -13,12 +13,17 @@ import { useState } from 'react'
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
+import { getDownloadURL, getStorage, ref, uploadString } from "firebase/storage";
+import { useSelector } from 'react-redux'
 
 
 
 
 const Sidebar = () => {
+    const data = useSelector(state => state.userLoginInfo.userInfo);
+    console.log(data, 'ddddddddddd');
     const auth = getAuth();
+    const storage = getStorage();
     const navigate = useNavigate()
     const handleSignOut = () => {
         signOut(auth).then(() => {
@@ -69,6 +74,34 @@ const Sidebar = () => {
     };
 
 
+    const getCropData = () => {
+        if (typeof cropperRef.current?.cropper !== "undefined") {
+            setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+
+
+            const storageRef = ref(storage, auth.currentUser.uid);
+            const message4 = cropperRef.current?.cropper.getCroppedCanvas().toDataURL();
+            uploadString(storageRef, message4, 'data_url').then((snapshot) => {
+                console.log('Uploaded a data_url string!');
+
+                getDownloadURL(storageRef).then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    updateProfile(auth.currentUser, {
+                        photoURL: downloadURL
+                    })
+                        .then(() => {
+                            setImageUploadPopup(false);
+                            setImage('');
+                            setCropData('');
+
+                        })
+
+                });
+            });
+
+        }
+    };
+
 
 
 
@@ -80,17 +113,18 @@ const Sidebar = () => {
 
             <div className='group relative w-[100px] h-[100px] mx-auto '>
 
-                <img src={profile} alt="" className='mx-auto' />
+                {/* upload profile pic given */}
+                <img src={data.photoURL} alt="" className='mx-auto rounded-full' />
+
                 <div onClick={handleImageUpload} className='opacity-0 group-hover:opacity-100 cursor-pointer bg-overlay rounded-full w-full h-full absolute top-0 left-0 flex justify-center items-center  transition ease-in-out'>
 
                     <BsFillCloudUploadFill className='text-[30px] text-[white]' />
                 </div>
             </div>
 
+            {/* profile display name given.......... */}
 
-
-
-
+            <h1 className='font-sans font-bold text-[34px] text-[black]  text-center'> {data.displayName}</h1>
 
 
 
@@ -161,7 +195,7 @@ const Sidebar = () => {
                         <input type="file" className='mt-[30px]' onChange={handleImageChange} />
 
                         <div className='mt-[10px]'>
-                            <button className='mt-[20px] rounded bg-primary px-[30px] py-[10px] text-white text-[18px]'>Upload</button>
+                            <button onClick={getCropData} className='mt-[20px] rounded bg-primary px-[30px] py-[10px] text-white text-[18px]'>Upload</button>
 
                             <button onClick={handlecanceluploadpopup} className='mt-[20px] rounded bg-red-500 px-[30px] py-[10px] text-white text-[18px] ml-[20px]'>Cancel</button>
                         </div>
