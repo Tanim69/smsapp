@@ -6,9 +6,14 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateP
 import { ToastContainer, toast } from 'react-toastify';
 
 
+import { getDatabase, ref, set } from "firebase/database";
+
+
 const Registration = () => {
 
     const auth = getAuth();
+    const db = getDatabase();
+
     const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [fullName, setFullName] = useState('')
@@ -94,7 +99,13 @@ const Registration = () => {
                                 navigate('/login')
                             }, 2000);
                         
-                      })
+                      }).then(()=>{
+                        set(ref(db, 'users/'+user.user.uid), {
+                            username: user.user.displayName,
+                            email: user.user.email,
+                          
+                          });
+                    })
 
                    
                 })

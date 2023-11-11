@@ -124,12 +124,12 @@ const Sidebar = () => {
 
             {/* profile display name given.......... */}
 
-            <h1 className='font-sans font-bold text-[34px] text-[black]  text-center'> {data.displayName}</h1>
+            <h1 className='font-sans font-bold text-[20px] text-[black]  text-center'> {data.displayName}</h1>
 
 
 
 
-            <div className='relative bg-white mt-[78px] ml-[25px] py-[20px] rounded-l-lg '>
+            <div className='relative bg-white mt-[58px] ml-[25px] py-[20px] rounded-l-lg '>
 
                 <div className='bg-primary absolute top-[0px] right-[0px] h-full w-[8px] rounded-l-lg'></div>
 
@@ -156,16 +156,23 @@ const Sidebar = () => {
                 imageUploadPopup &&
 
                 <div className='h-screen bg-primary w-full absolute top-0 left-0 z-[999] flex justify-center items-center'>
-                    <div className=' bg-white w-[700px] p-[20px]'>
 
+                    <div className=' bg-white w-[700px] p-[20px]'>
                         <h1 className='font-nunito font-bold text-[50px]  text-primary'>Image Upload </h1>
 
+                        {
+                            image ?
+                                <div className=' w-[100px] h-[100px] rounded-full mx-auto overflow-hidden mb-[20px]'>
+                                    <div className="img-preview w-[100px] h-[100px] rounded-full"></div>
+                                </div>
+                                :
+                                <div className=' w-[100px] h-[100px] rounded-full mx-auto overflow-hidden mb-[20px]'>
+                                    <img src={data.photoURL} alt="" />
+                                </div>
 
 
-                        <div className=' w-[100px] h-[100px] rounded-full mx-auto overflow-hidden mb-[20px]'>
 
-                            <div className="img-preview w-[100px] h-[100px] rounded-full"></div>
-                        </div>
+                        }
 
                         {
                             image &&
