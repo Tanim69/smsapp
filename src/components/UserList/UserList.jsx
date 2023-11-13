@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import userpic from '../../assets/userpic.png'
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue,set, push } from "firebase/database";
 import { useSelector } from 'react-redux';
+
 
 const UserList = () => {
   const data=useSelector(state=>state.userLoginInfo.userInfo);
@@ -19,7 +20,7 @@ const UserList = () => {
         console.log(item.val(), 'item');
         if(data.uid!=item.key){
 
-          arr.push({ ...item.val() })
+          arr.push({ ...item.val(),userid:item.key})
         }
         setUserList(arr)
       })
@@ -28,9 +29,24 @@ const UserList = () => {
 
   console.log(userList);
 
+
+  const handleFriendRequest =(item)=>{
+    console.log(item,'item');
+    set(push(ref(db, 'friendRequest/')), {
+      receivername: item.username,
+      receiverid: item.userid,
+      sendername: data.displayName,
+      senderid: data.uid
+
+    });
+  }
+
+
+
+
+
+
   return (
-
-
     <div className=' shadow  px-[22px] h-[384px] overflow-y-scroll rounded-lg mt-[30px]'>
 
       <div className='flex justify-between'>
@@ -51,7 +67,7 @@ const UserList = () => {
               </div>
 
               <div>
-                <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>+</button>
+                <button onClick={()=>handleFriendRequest(item)} className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>+</button>
               </div>
             </div>
 
