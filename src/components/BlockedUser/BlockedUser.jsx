@@ -18,19 +18,19 @@ const BlockedUser = () => {
       let arr = []
       snapshot.forEach((item) => {
 
-     if(item.val().blockbyid=data.uid){
+    if(item.val().blockbyid==data.uid){
       arr.push({
         id:item.key,
         block:item.val().block,
-        blockid:item.val().blockid,
-      })
-     }else if(item.val().blockid=data.uid){
+        blockid:item.val().blockid
+            })
+    }else{(item.val().blockbyid==data.uid)
       arr.push({
         id:item.key,
         blockby:item.val().blockby,
-        blockbyid:item.val().blockbyid,
-      })
-     }
+        blockbyid:item.val().blockbyid
+            })
+    }
       })
       setBlockList(arr)
     });
@@ -38,10 +38,17 @@ const BlockedUser = () => {
 
   const handleUnblock=(item)=>{
         console.log(item);
+        set(push(ref(db,'friend/')),{
+          sendername:item.block,
+          senderid:item.blockid,
+          receivername:data.displayName,
+          receiverid:data.uid
+      }).then(()=>{
+        remove(ref(db,'block/'+item.id))
+      })
 
-        
+
   }
-
 
 
 
@@ -71,11 +78,18 @@ const BlockedUser = () => {
 
     <div>
       <p className='font-pops text-[18px] font-semibold'>{item.block}</p>
+      <p className='font-pops text-[18px] font-semibold'>{item.blockby}</p>
       <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Hi Guys, Wassup!</p>
     </div>
 
     <div>
+
+
+    {
+      !item.blockby &&
       <button onClick={()=>handleUnblock(item)} className='bg-primary font-medium text-[20px] text-white px-[10px] rounded'>Unblock</button>
+    }
+   
     </div>
   </div>
 

@@ -43,7 +43,6 @@ const Friends = () => {
       set(push(ref(db,'block/')),{
         block:item.sendername,
         blockid:item.senderid,
-
         blockby:item.receivername,
         blockbyid:item.receiverid
     }).then(()=>{

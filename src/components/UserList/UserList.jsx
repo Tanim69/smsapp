@@ -92,7 +92,7 @@ const UserList = () => {
                 friendList.includes(data.uid + item.userid)
                 ?
                 <div>
-                <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Friend</button>
+                <button  className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Friend</button>
               </div>
               :
 
