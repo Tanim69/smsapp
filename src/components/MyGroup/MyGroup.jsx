@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import userpic from '../../assets/userpic.png'
+import { useSelector } from 'react-redux';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 const MyGroup = () => {
+
+
+  const data = useSelector(state => state.userLoginInfo.userInfo);
+  console.log(data);
+  const db = getDatabase();
+
+  const [mygroup, setMyGroup] = useState([])
+
+  useEffect(() => {
+    const mygroupRef = ref(db, '/mygroup');
+    onValue(mygroupRef, (snapshot) => {
+      let arr = []
+      snapshot.forEach((item) => {
+        if(data.uid==item.val().adminid){
+          arr.push(item.val());
+
+        }
+
+      })
+      setMyGroup(arr)
+    });
+  }, [])
+
+
+
+
   return (
 
 
@@ -14,90 +42,20 @@ const MyGroup = () => {
       </div>
 
       <div className='mt-[17px]'>
+     {
+
+      mygroup.map((item)=>(
         <div className='flex items-center justify-between border-b-2 pb-[14px]'>
-          <img src={userpic} alt="" />
-
-
-          <div>
-            <p className='font-pops text-[18px] font-semibold'>Friends Reunion</p>
-            <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Hi Guys, Wassup!</p>
-          </div>
-
-          <div>
-            <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
-          </div>
+        <img src={userpic} alt="" />
+        <div>
+          <h5>{item.adminname}</h5>
+          <p className='font-pops text-[18px] font-semibold'>{item.groupname}</p>
+          <p className='text-[14px] font-medium text-[#4D4D4DBF]'>{item.grouptagline}</p>
         </div>
+      </div>
 
-        <div className='flex items-center justify-between border-b-2 pb-[14px]'>
-          <img src={userpic} alt="" />
-
-
-          <div>
-            <p className='font-pops text-[18px] font-semibold'>Friends Reunion</p>
-            <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Hi Guys, Wassup!</p>
-          </div>
-
-          <div>
-            <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
-          </div>
-        </div>
-
-
-        <div className='flex items-center justify-between border-b-2 pb-[14px]'>
-          <img src={userpic} alt="" />
-
-
-          <div>
-            <p className='font-pops text-[18px] font-semibold'>Friends Reunion</p>
-            <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Hi Guys, Wassup!</p>
-          </div>
-
-          <div>
-            <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
-          </div>
-        </div>
-
-        <div className='flex items-center justify-between border-b-2 pb-[14px]'>
-          <img src={userpic} alt="" />
-
-
-          <div>
-            <p className='font-pops text-[18px] font-semibold'>Friends Reunion</p>
-            <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Hi Guys, Wassup!</p>
-          </div>
-
-          <div>
-            <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
-          </div>
-        </div>
-
-        <div className='flex items-center justify-between border-b-2 pb-[14px]'>
-          <img src={userpic} alt="" />
-
-
-          <div>
-            <p className='font-pops text-[18px] font-semibold'>Friends Reunion</p>
-            <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Hi Guys, Wassup!</p>
-          </div>
-
-          <div>
-            <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
-          </div>
-        </div>
-
-        <div className='flex items-center justify-between border-b-2 pb-[14px]'>
-          <img src={userpic} alt="" />
-
-
-          <div>
-            <p className='font-pops text-[18px] font-semibold'>Friends Reunion</p>
-            <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Hi Guys, Wassup!</p>
-          </div>
-
-          <div>
-            <button className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
-          </div>
-        </div>
+      ))
+     }
      
      
 

@@ -18,8 +18,6 @@ const FriendRequest = () => {
     onValue(friendRequestRef, (snapshot) => {
       let arr = []
       snapshot.forEach((item) => {
-
-        
         if(item.val().receiverid==data.uid){
           arr.push({...item.val(),id:item.key})
 
