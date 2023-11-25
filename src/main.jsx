@@ -15,12 +15,17 @@ import Home from './Pages/Home/Home.jsx';
 
 import store from './store'
 import { Provider } from 'react-redux'
+import Message from './Pages/Message/Message.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/msg",
+    element: <Message/>,
   },
   {
     path: "/registration",

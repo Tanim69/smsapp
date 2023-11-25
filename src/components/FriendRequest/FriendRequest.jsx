@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import userpic from '../../assets/userpic.png'
-import { getDatabase, ref, onValue, set, push, remove,  } from "firebase/database";
+import { getDatabase, ref, onValue, set, push, remove, } from "firebase/database";
 import { useSelector } from 'react-redux';
 
 
@@ -18,8 +18,8 @@ const FriendRequest = () => {
     onValue(friendRequestRef, (snapshot) => {
       let arr = []
       snapshot.forEach((item) => {
-        if(item.val().receiverid==data.uid){
-          arr.push({...item.val(),id:item.key})
+        if (item.val().receiverid == data.uid) {
+          arr.push({ ...item.val(), id: item.key })
 
         }
 
@@ -33,12 +33,12 @@ const FriendRequest = () => {
   console.log(friendRequestList);
 
 
-  const handleFriend =(item)=>{
+  const handleFriend = (item) => {
     console.log(item);
     set(push(ref(db, 'friend/')), {
-     ...item
-    }).then(()=>{
-      remove(ref(db, 'friendRequest/'+item.id))
+      ...item
+    }).then(() => {
+      remove(ref(db, 'friendRequest/' + item.id))
     })
   }
 
@@ -54,8 +54,11 @@ const FriendRequest = () => {
 
       <div className='mt-[17px]'>
         {
+          friendRequestList.length== 0 ? 
+          <h1 className='bg-green-200 text-red-600'>No data Available </h1>
+          :
 
-                       friendRequestList.map((item) => (
+          friendRequestList.map((item) => (
 
             <div className='flex items-center justify-between border-b-2 pb-[14px]'>
               <img src={userpic} alt="" />
@@ -67,7 +70,7 @@ const FriendRequest = () => {
               </div>
 
               <div>
-                <button onClick={()=>handleFriend(item)} className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
+                <button onClick={() => handleFriend(item)} className='bg-primary font-medium text-[20px] text-white px-[30px] rounded'>Accept</button>
               </div>
             </div>
 

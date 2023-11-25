@@ -5,7 +5,7 @@ import { IoIosNotificationsOutline } from 'react-icons/io'
 import { IoLogOut } from 'react-icons/io5'
 
 import { getAuth, signOut, updateProfile } from "firebase/auth";
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BsFillCloudUploadFill } from 'react-icons/bs'
 import { useState } from 'react'
 
@@ -19,7 +19,7 @@ import { useSelector } from 'react-redux'
 
 
 
-const Sidebar = () => {
+const Sidebar = ({ active }) => {
     const data = useSelector(state => state.userLoginInfo.userInfo);
     console.log(data, 'ddddddddddd');
     const auth = getAuth();
@@ -127,19 +127,32 @@ const Sidebar = () => {
             <h1 className='font-sans font-bold text-[20px] text-[black]  text-center'> {data.displayName}</h1>
 
 
+            {/* home start */}
 
-
-            <div className='relative bg-white mt-[58px] ml-[25px] py-[20px] rounded-l-lg '>
+            <div className={`relative ${active == 'home' && 'bg-white'} mt-[58px] ml-[25px] py-[20px] rounded-l-lg `}>
 
                 <div className='bg-primary absolute top-[0px] right-[0px] h-full w-[8px] rounded-l-lg'></div>
 
-                <AiOutlineHome className='mx-auto text-5xl text-primary' />
+                <Link to='/'>
+                    <AiOutlineHome className={`mx-auto text-5xl ${active == 'home' ? 'text-primary' : 'text-white'}`} />
+                </Link>
+            </div>
+            {/* home end */}
+
+            {/* message start */}
+
+            <div className={`relative ${active == 'msg' && 'bg-white'} mt-[58px] ml-[25px] py-[20px] rounded-l-lg `}>
+
+                <div className='bg-primary absolute top-[0px] right-[0px] h-full w-[8px] rounded-l-lg'></div>
+
+                <Link to='/msg'>
+                    <AiOutlineMessage className={`mx-auto text-5xl ${active == 'msg' ? 'text-primary' : "text-[#BAD1FF]"}`} />
+                </Link>
             </div>
 
-            <div className='mt-[78px]'>
-                <AiOutlineMessage className='mx-auto text-5xl text-[#BAD1FF]' />
-            </div>
 
+
+            {/* message end */}
             <div className='mt-[78px]'>
                 <IoIosNotificationsOutline className='mx-auto text-5xl text-[#BAD1FF]' />
             </div>

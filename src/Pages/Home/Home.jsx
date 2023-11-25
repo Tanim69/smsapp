@@ -51,7 +51,7 @@ const Home = () => {
             {/* <Sidebar/> */}
 
             <div className='w-[186px]'>
-              <Sidebar/>
+              <Sidebar active = 'home'/>
             </div>
 
             <div className='w-[427px] ml-[43px]'>
