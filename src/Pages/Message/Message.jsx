@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import GroupList from '../../components/GroupList/GroupList'
 import Friends from '../../components/Friends/Friends'
+import Chat from '../../components/Chat/Chat'
 
 const Message = () => {
   return (
@@ -17,10 +18,11 @@ const Message = () => {
               {/* <FriendRequest/> */}
               <Friends/>
             </div>
-            <div className='w-[427px] ml-[43px]'>
+            <div className='w-[690px] ml-[43px]'>
               {/* <Friends/> */}
               {/* <MyGroup/> */}
-              yo yo
+              <Chat/>
+              {/* yo yo */}
             </div>
             <div className='w-[427px] ml-[43px]'>
               {/* <UserList/>
