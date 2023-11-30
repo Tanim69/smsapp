@@ -4,6 +4,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { MdEmojiEmotions } from "react-icons/md";
 import { CiCamera } from "react-icons/ci";
 import { BsFillSendCheckFill } from "react-icons/bs";
+import { BsFillTriangleFill } from "react-icons/bs";
 
 
 const Chat = () => {
@@ -25,27 +26,138 @@ const Chat = () => {
 
 
             {/* start chatting............. */}
-            <div>
-                <button className='bg-[#F1F1F1] px-[55px] py-[15px] rounded-[20px] mt-[56px]'>Hey there!</button>
+<div className='overflow-y-scroll h-[500px] px-[10px]'>
+    
+             <div className='grid justify-items-start'>
+                <div className='relative bg-[#F1F1F1] px-[55px] py-[15px] rounded-lg mt-[56px]  w-[45%]'>
+                    <p>
+                    Hey there! 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 left-[-4px] text-[#F1F1F1]' />
+                </div>
                 <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:01pm</p>
 
-                <button className='bg-[#F1F1F1] px-[55px] py-[15px] rounded-[20px] mt-[20px]'>How are you doing?</button>
+               </div>
+
+
+
+
+             <div className="grid justify-items-end">
+
+                <div className='relative bg-primary px-[55px] py-[15px] rounded-lg mt-[20px] w-[45%] '>
+                    <p>
+                    Hello dear Lorem 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 right-[-4px] text-primary' />
+                </div>
                 <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:02pm</p>
+              </div>
 
 
-            </div>
 
-            <div className='grid justify-items-end'>
+              <div className='grid justify-items-start'>
+                <div className='relative bg-[#F1F1F1] px-[55px] py-[15px] rounded-lg mt-[56px]  w-[45%]'>
+                    <p>
+                    Hey there! 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 left-[-4px] text-[#F1F1F1]' />
+                </div>
+                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:01pm</p>
 
-                <button className='bg-primary px-[55px] py-[15px] rounded-[20px] mt-[20px] grid justify-items-end flex'>Hello dear</button>
-                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:12pm</p>
-                <button className='bg-primary px-[55px] py-[15px] rounded-[20px] mt-[20px] grid justify-items-end flex'>I am good  and how about you?</button>
-                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:14pm</p>
-            </div>
+               </div>
 
-            <div>
 
-                <button className='bg-[#F1F1F1] px-[55px] py-[15px] rounded-[20px] mt-[20px]'>I am doing well. Can we meet up tomorrow?</button>
+
+
+             <div className="grid justify-items-end">
+
+                <div className='relative bg-primary px-[55px] py-[15px] rounded-lg mt-[20px] w-[45%] '>
+                    <p>
+                    Hello dear Lorem 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 right-[-4px] text-primary' />
+                </div>
+                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:02pm</p>
+              </div>
+
+
+              <div className='grid justify-items-start'>
+                <div className='relative bg-[#F1F1F1] px-[55px] py-[15px] rounded-lg mt-[56px]  w-[45%]'>
+                    <p>
+                    Hey there! 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 left-[-4px] text-[#F1F1F1]' />
+                </div>
+                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:01pm</p>
+
+               </div>
+
+
+
+
+             <div className="grid justify-items-end">
+
+                <div className='relative bg-primary px-[55px] py-[15px] rounded-lg mt-[20px] w-[45%] '>
+                    <p>
+                    Hello dear Lorem 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 right-[-4px] text-primary' />
+                </div>
+                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:02pm</p>
+              </div>
+
+              <div className='grid justify-items-start'>
+                <div className='relative bg-[#F1F1F1] px-[55px] py-[15px] rounded-lg mt-[56px]  w-[45%]'>
+                    <p>
+                    Hey there! 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 left-[-4px] text-[#F1F1F1]' />
+                </div>
+                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:01pm</p>
+
+               </div>
+
+
+
+
+             <div className="grid justify-items-end">
+
+                <div className='relative bg-primary px-[55px] py-[15px] rounded-lg mt-[20px] w-[45%] '>
+                    <p>
+                    Hello dear Lorem 
+                    </p>
+                    <BsFillTriangleFill className='absolute bottom-0 right-[-4px] text-primary' />
+                </div>
+                <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:02pm</p>
+              </div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <div>
+
+                <div className='bg-[#F1F1F1] px-[55px] py-[15px] rounded-[20px] mt-[20px]'>I am doing well. Can we meet up tomorrow?</div>
                 <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:13pm</p>
 
             </div>
@@ -54,7 +166,7 @@ const Chat = () => {
             <div className='grid justify-items-end'>
 
 
-                <button className='bg-primary px-[55px] py-[15px] rounded-[20px] mt-[20px] grid justify-items-end flex'>Sure!</button>
+                <div className='bg-primary px-[55px] py-[15px] rounded-[20px] mt-[20px] grid justify-items-end flex'>Sure!</div>
                 <p className='text-[14px] font-medium text-[#4D4D4DBF]'>Today,02:14pm</p>
             </div>
 
@@ -74,7 +186,7 @@ const Chat = () => {
                 <BsFillSendCheckFill  className='text-[25px] text-[white] justify-self-center ' />
                 </div>
 
-            </div>
+            </div> */}
 
 
 
